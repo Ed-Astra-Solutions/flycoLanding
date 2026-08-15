@@ -349,6 +349,7 @@ section{padding-block:var(--sec)}
 .dcard2 .now{color:var(--ink);font-weight:600}
 .dcard2 .sep{display:flex;align-items:center;gap:9px;margin:13px 0;color:var(--gold-dark);font-family:var(--f-head);font-weight:700;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
 .dcard2 .sep::before,.dcard2 .sep::after{content:"";height:1px;background:var(--line);flex:1}
+.ba-foot{margin:clamp(24px,3vw,36px) auto 0;max-width:760px;text-align:center;color:var(--grey-light);font-size:.94rem;line-height:1.6}
 @media(max-width:860px){.ba-grid{grid-template-columns:1fr}.ba-delta{grid-template-columns:1fr}}
 
 /* ================= ICON ROW ================= */
@@ -689,7 +690,158 @@ form.sent .thanks{display:block}
   .sticky{transform:none}
   .hero h1 .ln i,.hero-fade{transform:none;opacity:1}
 }
+
+/* ==========================================================
+   DARK THEME  —  html[data-theme="dark"]
+   Activated by /dark  (or ?theme=dark, or the header toggle).
+   Token-first: surfaces and text run off the same custom
+   properties as the light theme, with per-component overrides
+   only where a literal colour was baked in.
+   ========================================================== */
+[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#f4f2ee;--ink-soft:#cfccc6;--grey:#a3a09a;--grey-light:#807d78;
+  --paper:#0b0b0b;--sand:#121110;--line:#2b2926;--black:#050505;--night:#141312;
+  --gold-dark:#e8b84a;--gold-soft:#4b3c1c;
+}
+[data-theme="dark"] body{background:var(--paper);color:var(--ink)}
+[data-theme="dark"] .announce{background:#000}
+
+/* header + nav */
+[data-theme="dark"] .site-header{background:rgba(11,11,11,.94);backdrop-filter:blur(12px)}
+[data-theme="dark"] .site-header.stuck{box-shadow:0 6px 24px rgba(0,0,0,.55)}
+[data-theme="dark"] .hdr-nav .drop-menu{background:#151413;box-shadow:0 12px 28px rgba(0,0,0,.55)}
+@media(max-width:1040px){[data-theme="dark"] .hdr-nav{background:#0f0e0e}}
+
+/* sections + bands */
+[data-theme="dark"] .night{background:#141312}
+[data-theme="dark"] .licence-strip{background:var(--sand)}
+[data-theme="dark"] .mq{background:#0f0e0e}
+[data-theme="dark"] .hero{background:#080808}
+[data-theme="dark"] .hero-bg::after{background:linear-gradient(92deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.76) 42%,rgba(0,0,0,.46) 100%)}
+[data-theme="dark"] .hero-bg img{filter:brightness(.86)}
+
+/* cards + panels that were literal #fff */
+[data-theme="dark"] .ba-col,
+[data-theme="dark"] .dcard2,
+[data-theme="dark"] .wcard,
+[data-theme="dark"] .dcard,
+[data-theme="dark"] .pack,
+[data-theme="dark"] form,
+[data-theme="dark"] .stat-pair div,
+[data-theme="dark"] .faq details[open]{background:#141312}
+[data-theme="dark"] .stat-pair div:hover{background:#1c1a17}
+[data-theme="dark"] .shot,[data-theme="dark"] .wcard .ph,[data-theme="dark"] .dcard .ph{background:#1c1a18}
+[data-theme="dark"] .frame{box-shadow:0 22px 50px rgba(0,0,0,.6)}
+[data-theme="dark"] .dcard:hover,
+[data-theme="dark"] .wcard:hover,
+[data-theme="dark"] .dcard2:hover{box-shadow:0 22px 46px rgba(0,0,0,.6)}
+[data-theme="dark"] .pack:hover{box-shadow:0 8px 26px rgba(0,0,0,.5);border-color:#413d37}
+[data-theme="dark"] .ba-col .shot img{filter:grayscale(.6) brightness(.8)}
+[data-theme="dark"] .ba-col-win{box-shadow:0 14px 42px rgba(225,168,54,.12)}
+
+/* gold-tinted chrome */
+[data-theme="dark"] .dcard2 .ic-box,
+[data-theme="dark"] .bandlab i{background:linear-gradient(145deg,#2b2214,#1d1710)}
+[data-theme="dark"] .dcard2 .was .k,
+[data-theme="dark"] .cmp-chip.old,
+[data-theme="dark"] .mark.no{background:#242220}
+[data-theme="dark"] .mark.no svg{stroke:#6e6a63}
+[data-theme="dark"] .dots button{background:#3a3733}
+
+/* buttons */
+[data-theme="dark"] .btn-dark{background:#f4f2ee;color:#111;border-color:#f4f2ee}
+[data-theme="dark"] .btn-dark:hover{box-shadow:0 12px 26px rgba(0,0,0,.5)}
+[data-theme="dark"] .btn-out{color:var(--ink);border-color:rgba(255,255,255,.42)}
+[data-theme="dark"] .btn-out:hover{background:#f4f2ee;color:#111;border-color:#f4f2ee}
+
+/* comparison table: keep the two columns readably different */
+[data-theme="dark"] .cmp .h-old,
+[data-theme="dark"] .cmp td.c-old,
+[data-theme="dark"] .cmp tr.band td.c-old,
+[data-theme="dark"] .cmp tr.band:hover td.c-old,
+[data-theme="dark"] .cmp-mob-head .m-old{background:#111010}
+[data-theme="dark"] .cmp tbody tr:hover td.c-old{background:#191817}
+[data-theme="dark"] .cmp .h-new,
+[data-theme="dark"] .cmp td.c-new,
+[data-theme="dark"] .cmp tr.band td.c-new,
+[data-theme="dark"] .cmp tr.band:hover td.c-new{background:#1b1712}
+[data-theme="dark"] .cmp tbody tr:hover td.c-new{background:#241e15}
+[data-theme="dark"] .cmp tr.verdict td.c-new{background:linear-gradient(180deg,#221c14,#171310)}
+[data-theme="dark"] .cmp .h-new{box-shadow:0 -14px 40px rgba(225,168,54,.14)}
+@media(max-width:800px){[data-theme="dark"] .cmp tbody tr{background:#141312}}
+
+/* form controls */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea{background:#100f0e;border-color:#33302b;color:var(--ink)}
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder{color:#6a6761}
+[data-theme="dark"] form{box-shadow:0 22px 54px rgba(0,0,0,.5)}
+
+/* footer + sticky bar */
+[data-theme="dark"] .site-footer{background:#050505}
+[data-theme="dark"] .sticky{background:rgba(12,12,12,.96);border-top-color:var(--line)}
+
+/* theme toggle */
+.theme-btn{background:none;border:0;padding:6px;cursor:pointer;color:var(--ink);display:inline-flex;line-height:0}
+.theme-btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;transition:transform .35s var(--ease)}
+.theme-btn:hover svg{transform:rotate(18deg)}
+.theme-btn .sun{display:none}
+[data-theme="dark"] .theme-btn .sun{display:block}
+[data-theme="dark"] .theme-btn .moon{display:none}
+
+/* ================= MOBILE REFINEMENTS (both themes) ================= */
+@media(max-width:640px){
+  :root{--sec:clamp(44px,9vw,64px)}
+  h1{font-size:clamp(1.95rem,8.2vw,2.5rem);letter-spacing:-.022em}
+  h2{font-size:clamp(1.42rem,6.4vw,1.9rem)}
+  .hero{min-height:auto;padding-block:clamp(54px,14vw,74px)}
+  .hero p{font-size:.98rem;line-height:1.62;margin-top:14px}
+  .hero-btns{gap:10px;margin-top:24px}
+  .hero-btns .btn{flex:1 1 100%}
+  .scroll-cue{display:none}
+  .head{margin-bottom:28px}
+  .head p{font-size:.95rem;line-height:1.65}
+  .btn{padding:14px 22px;font-size:.85rem}
+  .cbar-grid div{padding:24px 12px}
+  .cbar span{font-size:.73rem;line-height:1.42;margin-top:7px}
+  .split{gap:26px}
+  .gal{gap:10px}
+  .ba-col{padding:14px}
+  .ba-foot{font-size:.9rem}
+  .mini-list li{font-size:.92rem}
+  .faq summary{padding:18px 40px 18px 4px;font-size:.95rem}
+  .faq .ans{padding:0 34px 20px 4px;font-size:.92rem}
+  .carousel{min-height:300px}
+  .tslide q{font-size:1.04rem;line-height:1.5}
+  .dots{margin-top:24px}
+  .dots button{width:10px;height:10px}
+  .pack-inc{gap:6px 16px}
+  .mq-set{gap:22px;padding-right:22px}
+  .tmq-set{gap:24px;padding-right:24px}
+  .tmq-set span{font-size:.76rem;letter-spacing:.12em}
+  .foot-main{gap:26px}
+  .news-form{max-width:none}
+  .lb{padding:14px}
+  .src-note{font-size:.74rem}
+}
+@media(max-width:400px){
+  .g2,.g3,.g5,.g6{gap:8px}
+  .hdr-util{gap:11px}
+  .hdr-util a[aria-label="Search"],.hdr-util a[aria-label="Login"]{display:none}
+  .hdr-cta{padding:10px 12px;font-size:.7rem}
+}
 </style>
+<script>
+/* Theme bootstrap — /dark (or ?theme=dark) renders the dark presentation build. */
+(function(){try{
+  var q=new URLSearchParams(location.search).get("theme");
+  var dark=q?q==="dark":/(^|\/)dark(\.html)?$/i.test(location.pathname);
+  if(dark){document.documentElement.setAttribute("data-theme","dark");
+    var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content","#0b0b0b");}
+}catch(e){}})();
+</script>
 </head>
 <body>
 
@@ -725,6 +877,10 @@ form.sent .thanks{display:block}
       <a href="https://www.flycotravel.com/search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
       <a href="https://www.flycotravel.com/account/login" aria-label="Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></a>
       <a href="https://www.flycotravel.com/cart" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg></a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark" title="Switch light / dark">
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.4 19.6L6 18M18 6l1.6-1.6"/></svg>
+      </button>
       <a class="hdr-cta" href="#enquire">Enquire Now</a>
     </div>
   </div>
@@ -883,29 +1039,7 @@ form.sent .thanks{display:block}
         <p class="ba-cap">Fresh locations, varied activities and a crew filming throughout. Delivered production ready.</p>
       </div>
     </div>
-    <div class="ba-delta" data-anim="up" style="--d:.24s">
-      <div class="dcard2">
-        <div class="ic-box"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
-        <h3>Location</h3>
-        <p class="row was"><span class="k">Now</span>One bedroom, on repeat</p>
-        <p class="sep">The FLYCO Retreat Difference</p>
-        <p class="row now"><span class="k">Then</span>Five signature backdrops in four days</p>
-      </div>
-      <div class="dcard2">
-        <div class="ic-box"><svg viewBox="0 0 24 24"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M16 6h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h2"/><path d="M9 12h6M9 16h4"/></svg></div>
-        <h3>Direction</h3>
-        <p class="row was"><span class="k">Now</span>Whatever they think of that day</p>
-        <p class="sep">The FLYCO Retreat Difference</p>
-        <p class="row now"><span class="k">Then</span>A shot list built around your product</p>
-      </div>
-      <div class="dcard2">
-        <div class="ic-box"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.4"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.4"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.4"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.4"/></svg></div>
-        <h3>Output</h3>
-        <p class="row was"><span class="k">Now</span>A handful of usable posts</p>
-        <p class="sep">The FLYCO Retreat Difference</p>
-        <p class="row now"><span class="k">Then</span>A library you can put behind paid spend</p>
-      </div>
-    </div>
+    <p class="ba-foot" data-anim="up" style="--d:.24s">Five signature backdrops in four days, a shot list built around your product, and a content library you can put behind paid spend.</p>
   </div>
 </section>
 
@@ -1538,6 +1672,16 @@ window.addEventListener("scroll", function(){
 }, {passive:true});
 
 /* ---- mobile nav ---- */
+var themeBtn = document.getElementById("themeBtn");
+if (themeBtn) themeBtn.addEventListener("click", function(){
+  var root = document.documentElement, isDark = root.getAttribute("data-theme") === "dark", next = isDark ? "light" : "dark";
+  root.setAttribute("data-theme", next);
+  themeBtn.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
+  var m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.setAttribute("content", next === "dark" ? "#0b0b0b" : "#0d0d0d");
+  try { var u = new URL(location.href); u.searchParams.set("theme", next); history.replaceState(null, "", u); } catch (e) {}
+});
+
 var burger = document.getElementById("burger"), nav = document.getElementById("mainnav");
 burger.addEventListener("click", function(){
   var open = nav.classList.toggle("open");
