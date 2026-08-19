@@ -1,0 +1,4 @@
+{
+  "sections": { "retreat_landing": { "type": "retreat-landing", "settings": {} } },
+  "order": ["retreat_landing"]
+}

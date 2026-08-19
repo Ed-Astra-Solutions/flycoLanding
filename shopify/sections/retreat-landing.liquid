@@ -1,0 +1,36 @@
+{%- comment -%}
+  FLYCO Corporate & Brand Retreats — ported from flycoLanding@main.
+  Replicated site header/footer stripped; the Inova theme supplies those.
+  CSS namespaced under .flyco-retreat; dark-theme rules kept on [data-theme="dark"].
+  59 inlined base64 images extracted to Shopify Files and resolved via file_url.
+{%- endcomment -%}
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+{{ 'retreat-v2.css' | asset_url | stylesheet_tag }}
+
+<script>
+  window.FLYCO_IMG = [
+    {{ 'retreat-map-tokyo.webp'    | file_url | json }},
+    {{ 'retreat-map-shanghai.webp' | file_url | json }},
+    {{ 'retreat-map-brisbane.webp' | file_url | json }},
+    {{ 'retreat-map-paris.webp'    | file_url | json }},
+    {{ 'retreat-map-newyork.webp'  | file_url | json }}
+  ];
+</script>
+
+<div class="flyco-retreat">
+  {% render 'retreat-v2-part1' %}
+  {% render 'retreat-v2-part2' %}
+</div>
+
+<script src="{{ 'retreat-v2.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Retreat landing",
+  "tag": "section",
+  "settings": [],
+  "presets": [{ "name": "Retreat landing" }]
+}
+{% endschema %}
