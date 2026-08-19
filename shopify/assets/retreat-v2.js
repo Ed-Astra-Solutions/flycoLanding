@@ -179,10 +179,24 @@ form.addEventListener("submit", function(e){
   var data = {};
   new FormData(form).forEach(function(v,k){ data[k] = v; });
 
-  /* ---- CONNECT YOUR BACKEND HERE ----
-     Replace console.log with your endpoint, a Shopify contact form action,
-     a Zapier or Make webhook, or your CRM form API. */
-  console.log("FLYCO enquiry", data);
+  /* ---- Klaviyo: identify the lead, then fire a custom event ---- */
+  try {
+    var _learnq = window._learnq = window._learnq || [];
+    _learnq.push(["identify", {
+      $email: data.email, $first_name: data.name,
+      $phone_number: data.phone || "", $organization: data.company || "",
+      Source: "Corporate Retreats Landing"
+    }]);
+    _learnq.push(["track", "Retreat Enquiry", {
+      Company: data.company || "", Interest: data.interest || "",
+      Budget: data.budget || "", Timing: data.timing || "",
+      Destination: data.destination || "", Message: data.message || "",
+      LandingPage: data.landing_page || "", Referrer: data.referrer || "",
+      utm_source: data.utm_source || "", utm_medium: data.utm_medium || "",
+      utm_campaign: data.utm_campaign || "", utm_content: data.utm_content || "",
+      utm_term: data.utm_term || "", gclid: data.gclid || "", fbclid: data.fbclid || ""
+    }]);
+  } catch (err) { /* Klaviyo not loaded; the tracking below still fires */ }
 
   if (typeof fbq === "function") fbq("track", "Lead");
   if (typeof gtag === "function") gtag("event", "generate_lead", { currency:"SGD", value:1 });
