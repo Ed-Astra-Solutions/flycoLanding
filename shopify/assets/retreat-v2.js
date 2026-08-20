@@ -164,8 +164,7 @@ form.addEventListener("input", function(e){
   if (e.target.classList.contains("err") && e.target.value.trim()) mark(e.target, false);
 });
 form.addEventListener("submit", function(e){
-  e.preventDefault();
-  if (document.getElementById("company_website").value) return;
+  if (document.getElementById("company_website").value) { e.preventDefault(); return; }
   var firstBad = null;
   form.querySelectorAll("[required]").forEach(function(input){
     var bad;
@@ -174,10 +173,22 @@ form.addEventListener("submit", function(e){
     else { bad = !input.value.trim(); mark(input, bad); }
     if (bad && !firstBad) firstBad = input;
   });
-  if (firstBad) { firstBad.focus(); return; }
+  if (firstBad) { e.preventDefault(); firstBad.focus(); return; }
 
-  var data = {};
-  new FormData(form).forEach(function(v,k){ data[k] = v; });
+  var raw = {};
+  new FormData(form).forEach(function(v,k){
+    var m = k.match(/^contact\[(.+)\]$/);
+    raw[m ? m[1] : k] = v;
+  });
+  var data = {
+    name: raw.name, email: raw.email, phone: raw.phone,
+    company: raw.Company, interest: raw.Interest, budget: raw.Budget,
+    timing: raw["Travel window"], destination: raw.Destination, message: raw.body,
+    landing_page: raw["Landing page"], referrer: raw.Referrer,
+    utm_source: raw.utm_source, utm_medium: raw.utm_medium, utm_campaign: raw.utm_campaign,
+    utm_content: raw.utm_content, utm_term: raw.utm_term,
+    gclid: raw.gclid, fbclid: raw.fbclid
+  };
 
   /* ---- Klaviyo: identify the lead, then fire a custom event ---- */
   try {
@@ -198,46 +209,21 @@ form.addEventListener("submit", function(e){
     }]);
   } catch (err) { /* Klaviyo not loaded; the tracking below still fires */ }
 
-  /* ---- Shopify native contact form: emails the store contact address ---- */
-  /* Server-side delivery, so the enquiry survives even if Klaviyo is blocked. */
-  try {
-    var body = new URLSearchParams();
-    body.append("form_type", "contact");
-    body.append("utf8", "\u2713");
-    body.append("contact[name]", data.name || "");
-    body.append("contact[email]", data.email || "");
-    body.append("contact[phone]", data.phone || "");
-    body.append("contact[Company]", data.company || "");
-    body.append("contact[Wants to run]", data.interest || "");
-    body.append("contact[Budget]", data.budget || "");
-    body.append("contact[Travel window]", data.timing || "");
-    body.append("contact[Destination]", data.destination || "");
-    body.append("contact[Landing page]", data.landing_page || "");
-    body.append("contact[Referrer]", data.referrer || "");
-    body.append("contact[Campaign]", [data.utm_source, data.utm_medium, data.utm_campaign].filter(Boolean).join(" / "));
-    body.append("contact[body]",
-      "Corporate retreat enquiry\n\n" +
-      "Company: " + (data.company || "-") + "\n" +
-      "Wants to run: " + (data.interest || "-") + "\n" +
-      "Budget: " + (data.budget || "-") + "\n" +
-      "Travel window: " + (data.timing || "-") + "\n" +
-      "Destination: " + (data.destination || "-") + "\n\n" +
-      "Message:\n" + (data.message || "-"));
-    fetch("/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: body.toString()
-    }).catch(function(){});
-  } catch (err) {}
-
   if (typeof fbq === "function") fbq("track", "Lead");
   if (typeof gtag === "function") gtag("event", "generate_lead", { currency:"SGD", value:1 });
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event:"flyco_enquiry_submitted", form_id:"corporate_retreats" });
 
+  /* No preventDefault from here: the native POST carries Shopify's CAPTCHA
+     token, which an XHR cannot forge. Shopify redirects back with
+     ?contact_posted=true and the block below shows the success panel. */
+});
+
+/* ---- success state after Shopify's redirect ---- */
+if (/[?&]contact_posted=true/.test(window.location.search)) {
   form.classList.add("sent");
   form.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block:"center" });
-});
+}
 /* ---- interactive destination map ---- */
 (function(){
   var stage = document.getElementById("mapStage"), base = document.getElementById("mapBase"), fx = document.getElementById("mapFx");

@@ -226,14 +226,15 @@
           <div class="shot sq reveal"><img src="{{ 'onsite-beach.webp' | file_url }}" alt="Branded beach activation"></div>
         </div>
       </div>
-      <form id="enquiryForm" novalidate data-anim="up">
+      <div data-anim="up">
+      {%- form 'contact', id: 'enquiryForm', novalidate: 'novalidate' -%}
         <div class="fields">
-          <div class="field"><label for="name">Full name <span class="req">*</span></label><input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Tan" required><span class="err-msg">Please enter your name.</span></div>
-          <div class="field"><label for="company">Company <span class="req">*</span></label><input type="text" id="company" name="company" autocomplete="organization" placeholder="Company name" required><span class="err-msg">Please enter your company.</span></div>
-          <div class="field"><label for="email">Work email <span class="req">*</span></label><input type="email" id="email" name="email" autocomplete="email" placeholder="jane@company.com" required><span class="err-msg">Please enter a valid work email.</span></div>
-          <div class="field"><label for="phone">WhatsApp or phone <span class="req">*</span></label><input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+65 8000 0000" required><span class="err-msg">Please enter a contact number.</span></div>
+          <div class="field"><label for="name">Full name <span class="req">*</span></label><input type="text" id="name" name="contact[name]" autocomplete="name" placeholder="Jane Tan" required><span class="err-msg">Please enter your name.</span></div>
+          <div class="field"><label for="company">Company <span class="req">*</span></label><input type="text" id="company" name="contact[Company]" autocomplete="organization" placeholder="Company name" required><span class="err-msg">Please enter your company.</span></div>
+          <div class="field"><label for="email">Work email <span class="req">*</span></label><input type="email" id="email" name="contact[email]" autocomplete="email" placeholder="jane@company.com" required><span class="err-msg">Please enter a valid work email.</span></div>
+          <div class="field"><label for="phone">WhatsApp or phone <span class="req">*</span></label><input type="tel" id="phone" name="contact[phone]" autocomplete="tel" placeholder="+65 8000 0000" required><span class="err-msg">Please enter a contact number.</span></div>
           <div class="field"><label for="interest">What you want to run <span class="req">*</span></label>
-            <select id="interest" name="interest" required>
+            <select id="interest" name="contact[Interest]" required>
               <option value="">Select one</option>
               <option>Brand tailored retreat, Asia</option>
               <option>Brand tailored retreat, international</option>
@@ -243,7 +244,7 @@
               <option>Not sure yet, advise us</option>
             </select><span class="err-msg">Please choose an option.</span></div>
           <div class="field"><label for="budget">Indicative budget <span class="req">*</span></label>
-            <select id="budget" name="budget" required>
+            <select id="budget" name="contact[Budget]" required>
               <option value="">Select one</option>
               <option>Under SGD 20,000</option>
               <option>SGD 20,000 to 30,000</option>
@@ -252,27 +253,28 @@
               <option>Not confirmed yet</option>
             </select><span class="err-msg">Please choose a range.</span></div>
           <div class="field"><label for="timing">Target travel window</label>
-            <select id="timing" name="timing">
+            <select id="timing" name="contact[Travel window]">
               <option value="">Select one</option>
               <option>Within 3 months</option>
               <option>3 to 6 months</option>
               <option>More than 6 months</option>
               <option>Still exploring</option>
             </select></div>
-          <div class="field"><label for="destination">Preferred destination</label><input type="text" id="destination" name="destination" placeholder="Bali, Ho Chi Minh, open to ideas"></div>
-          <div class="field full"><label for="message">What is the campaign for</label><textarea id="message" name="message" placeholder="Product launch, retail push, content library for Q4, customer loyalty. Anything that helps us scope it properly."></textarea></div>
-          <input type="hidden" name="utm_source" id="utm_source"><input type="hidden" name="utm_medium" id="utm_medium">
-          <input type="hidden" name="utm_campaign" id="utm_campaign"><input type="hidden" name="utm_content" id="utm_content">
-          <input type="hidden" name="utm_term" id="utm_term"><input type="hidden" name="gclid" id="gclid">
-          <input type="hidden" name="fbclid" id="fbclid"><input type="hidden" name="landing_page" id="landing_page">
-          <input type="hidden" name="referrer" id="referrer">
+          <div class="field"><label for="destination">Preferred destination</label><input type="text" id="destination" name="contact[Destination]" placeholder="Bali, Ho Chi Minh, open to ideas"></div>
+          <div class="field full"><label for="message">What is the campaign for</label><textarea id="message" name="contact[body]" placeholder="Product launch, retail push, content library for Q4, customer loyalty. Anything that helps us scope it properly."></textarea></div>
+          <input type="hidden" name="contact[utm_source]" id="utm_source"><input type="hidden" name="contact[utm_medium]" id="utm_medium">
+          <input type="hidden" name="contact[utm_campaign]" id="utm_campaign"><input type="hidden" name="contact[utm_content]" id="utm_content">
+          <input type="hidden" name="contact[utm_term]" id="utm_term"><input type="hidden" name="contact[gclid]" id="gclid">
+          <input type="hidden" name="contact[fbclid]" id="fbclid"><input type="hidden" name="contact[Landing page]" id="landing_page">
+          <input type="hidden" name="contact[Referrer]" id="referrer">
           <input type="text" name="company_website" id="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
         </div>
-        <div class="consent"><input type="checkbox" id="consent" name="consent" required><label for="consent">I agree to FLYCO contacting me about this enquiry by email, phone or WhatsApp.</label></div>
+        <div class="consent"><input type="checkbox" id="consent" name="contact[Consent]" required><label for="consent">I agree to FLYCO contacting me about this enquiry by email, phone or WhatsApp.</label></div>
         <button type="submit" class="btn btn-gold btn-block"><span>Send My Enquiry</span></button>
         <p class="form-foot">We reply within one business day. Your details are never sold or shared.</p>
-        <div class="thanks" role="status"><div class="tick"></div><h3>Enquiry received</h3><p>Thanks. Our team will be in touch within one business day with next steps and a few questions to scope your proposal.</p></div>
-      </form>
+        <div class="thanks" role="status" id="enquiryThanks"><div class="tick"></div><h3>Enquiry received</h3><p>Thanks. Our team will be in touch within one business day with next steps and a few questions to scope your proposal.</p></div>
+      {%- endform -%}
+      </div>
     </div>
   </div>
 </section>
