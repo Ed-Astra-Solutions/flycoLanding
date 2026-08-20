@@ -198,6 +198,38 @@ form.addEventListener("submit", function(e){
     }]);
   } catch (err) { /* Klaviyo not loaded; the tracking below still fires */ }
 
+  /* ---- Shopify native contact form: emails the store contact address ---- */
+  /* Server-side delivery, so the enquiry survives even if Klaviyo is blocked. */
+  try {
+    var body = new URLSearchParams();
+    body.append("form_type", "contact");
+    body.append("utf8", "\u2713");
+    body.append("contact[name]", data.name || "");
+    body.append("contact[email]", data.email || "");
+    body.append("contact[phone]", data.phone || "");
+    body.append("contact[Company]", data.company || "");
+    body.append("contact[Wants to run]", data.interest || "");
+    body.append("contact[Budget]", data.budget || "");
+    body.append("contact[Travel window]", data.timing || "");
+    body.append("contact[Destination]", data.destination || "");
+    body.append("contact[Landing page]", data.landing_page || "");
+    body.append("contact[Referrer]", data.referrer || "");
+    body.append("contact[Campaign]", [data.utm_source, data.utm_medium, data.utm_campaign].filter(Boolean).join(" / "));
+    body.append("contact[body]",
+      "Corporate retreat enquiry\n\n" +
+      "Company: " + (data.company || "-") + "\n" +
+      "Wants to run: " + (data.interest || "-") + "\n" +
+      "Budget: " + (data.budget || "-") + "\n" +
+      "Travel window: " + (data.timing || "-") + "\n" +
+      "Destination: " + (data.destination || "-") + "\n\n" +
+      "Message:\n" + (data.message || "-"));
+    fetch("/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString()
+    }).catch(function(){});
+  } catch (err) {}
+
   if (typeof fbq === "function") fbq("track", "Lead");
   if (typeof gtag === "function") gtag("event", "generate_lead", { currency:"SGD", value:1 });
   window.dataLayer = window.dataLayer || [];
