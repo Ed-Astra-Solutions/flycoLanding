@@ -204,7 +204,8 @@ section{padding-block:var(--sec)}
 .night .hl{color:var(--gold)}
 
 /* ================= HERO ================= */
-.hero{position:relative;min-height:clamp(520px,72vh,720px);display:flex;align-items:center;padding-block:clamp(60px,8vw,100px);background:#101010;overflow:hidden}
+.hero{position:relative;min-height:calc(100svh - 118px);display:flex;flex-direction:column;padding-block:clamp(40px,6vw,72px) 0;background:#101010;overflow:hidden}
+.hero-main{flex:1;display:flex;align-items:center}
 .hero-bg{position:absolute;inset:0;overflow:hidden}
 .hero-bg img{width:100%;height:100%;object-fit:cover;animation:kenburns 18s ease-in-out infinite alternate}
 @keyframes kenburns{from{transform:scale(1.04) translate3d(0,0,0)}to{transform:scale(1.34) translate3d(-3.5%,-3%,0)}}
@@ -222,13 +223,18 @@ section{padding-block:var(--sec)}
 /* ---- hero marketing / travel layer ---- */
 .hero-sub{display:block;font-family:var(--f-script);font-style:italic;font-weight:600;text-transform:none;letter-spacing:.01em;font-size:clamp(1.25rem,2.4vw,1.75rem);color:var(--gold-soft);margin-top:10px}
 /* ---- value strip under the hero ---- */
-.valstrip{background:var(--night);color:#fff;border-top:1px solid rgba(255,255,255,.08)}
-.valstrip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.11)}
-.valstrip-grid div{background:var(--night);padding:26px 22px}
-.valstrip b{display:block;font-family:var(--f-head);font-weight:800;font-size:.95rem;letter-spacing:-.01em;color:#fff}
-.valstrip em{display:block;font-style:normal;font-family:var(--f-head);font-weight:700;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
-.valstrip span{display:block;margin-top:7px;font-size:.82rem;color:#a5a5a5;line-height:1.55}
-@media(max-width:820px){.valstrip-grid{grid-template-columns:1fr}}
+.valstrip{position:relative;z-index:2;margin-top:clamp(28px,4vw,48px);color:#fff;background:rgba(8,8,8,.72);backdrop-filter:blur(9px);border-top:1px solid rgba(255,255,255,.14)}
+.valstrip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14)}
+.valstrip-grid div{background:rgba(8,8,8,.55);padding:22px clamp(16px,1.6vw,24px)}
+.valstrip b{display:block;font-family:var(--f-head);font-weight:800;font-size:.92rem;line-height:1.35;letter-spacing:-.01em;color:#fff}
+.valstrip em{display:block;font-style:normal;font-family:var(--f-head);font-weight:700;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.valstrip span{display:block;margin-top:7px;font-size:.79rem;color:#bdbdbd;line-height:1.5}
+@media(max-width:820px){
+  .valstrip-grid{grid-template-columns:1fr;gap:1px}
+  .valstrip-grid div{padding:14px 18px}
+  .valstrip span{display:none}
+  .valstrip em{margin-bottom:5px}
+}
 .licence-strip{border-top:1px solid var(--line);padding-block:clamp(28px,4vw,44px);background:var(--sand)}
 .licence-badge{max-width:900px;margin:0 auto;text-align:center}
 .licence-badge .txt{margin:0}
@@ -846,7 +852,7 @@ form.sent .thanks{display:block}
   :root{--sec:clamp(44px,9vw,64px)}
   h1{font-size:clamp(1.95rem,8.2vw,2.5rem);letter-spacing:-.022em}
   h2{font-size:clamp(1.42rem,6.4vw,1.9rem)}
-  .hero{min-height:auto;padding-block:clamp(54px,14vw,74px)}
+  .hero{min-height:auto;padding-block:clamp(54px,14vw,74px) 0}
   .hero p{font-size:.98rem;line-height:1.62;margin-top:14px}
   .hero-btns{gap:10px;margin-top:24px}
   .hero-btns .btn{flex:1 1 100%}
@@ -936,29 +942,27 @@ form.sent .thanks{display:block}
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
   <div class="hero-bg"><img src="https://www.flycotravel.com/cdn/shop/files/FINNS-World-Best-Beach-Club-in-Canggu-Bali.jpg?v=1778752441&width=1600" alt="" aria-hidden="true"></div>
-  <div class="wrap">
+  <div class="wrap hero-main">
     <div class="hero-in">
-      <h1><span class="ln"><i>Your Best Campaign</i></span><span class="ln"><i>Has A Boarding Pass</i></span>
-        <span class="hero-sub hero-fade d1">corporate retreats that sell, film and travel well</span>
+      <h1><span class="ln"><i>Corporate Retreats</i></span><span class="ln"><i>That Pay You Back</i></span>
+        <span class="hero-sub hero-fade d1">revenue, content and advocates from one trip</span>
       </h1>
       <p class="hero-fade d1">Fly your customers, creators or team somewhere worth posting about. The spend happens before takeoff, the content is shot while you are there, and the advocacy runs for months after. Flights, hotels, creators and crew are ours to handle.</p>
-      <div class="hero-btns hero-fade d3">
+      <div class="hero-btns hero-fade d2">
         <a class="btn btn-gold" href="#enquire"><span>Get My Campaign Model</span></a>
         <a class="btn btn-out-light" href="https://www.flycotravel.com/collections/travel-retreats"><span>Explore Our Retreats</span></a>
       </div>
     </div>
   </div>
-  <div class="scroll-cue" aria-hidden="true"></div>
+  <!-- what is in it for you, held inside the first screen -->
+  <div class="valstrip hero-fade d3">
+    <div class="wrap"><div class="valstrip-grid">
+      <div><em>You get revenue</em><b>The campaign pays for the trip before it takes off</b><span>A spend-to-win mechanic lifts basket size in store, and we track the retail lift against the cost of the retreat. Finance sees a number, not a nice-to-have.</span></div>
+      <div><em>You get creative</em><b>Months of fresh assets from one production window</b><span>Five settings, real customers and creators, shot by our crew on the ground. Your media buyer stops paying the fatigue tax on the same three ads.</span></div>
+      <div><em>You get the brand</em><b>Your logo on the whole experience, not on a voucher</b><span>Welcome kits, signage, itinerary, the highlight film. The prize stays yours, and the winners keep talking about it long after they land.</span></div>
+    </div></div>
+  </div>
 </section>
-
-<!-- ===== WHAT IS IN IT FOR YOU ===== -->
-<div class="valstrip">
-  <div class="wrap"><div class="valstrip-grid">
-    <div data-anim="up"><em>You get revenue</em><b>The campaign pays for the trip before it takes off</b><span>A spend-to-win mechanic lifts basket size in store, and we track the retail lift against the cost of the retreat. Finance sees a number, not a nice-to-have.</span></div>
-    <div data-anim="up" style="--d:.1s"><em>You get creative</em><b>Months of fresh assets from one production window</b><span>Five settings, real customers and creators, shot by our crew on the ground. Your media buyer stops paying the fatigue tax on the same three ads.</span></div>
-    <div data-anim="up" style="--d:.2s"><em>You get the brand</em><b>Your logo on the whole experience, not on a voucher</b><span>Welcome kits, signage, itinerary, the highlight film. The prize stays yours, and the winners keep talking about it long after they land.</span></div>
-  </div></div>
-</div>
 
 <!-- ===== BRAND LOGO MARQUEE ===== -->
 <div class="mq">
