@@ -219,23 +219,24 @@ section{padding-block:var(--sec)}
 .hero h1 .ln:nth-child(2) i{transition-delay:.11s}
 .hero p{color:rgba(255,255,255,.9);font-size:clamp(1rem,1.5vw,1.14rem);margin-top:18px;max-width:54ch}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-/* ---- hero marketing / performance layer ---- */
-.hero-tag{display:inline-flex;align-items:center;gap:9px;flex-wrap:wrap;padding:7px 14px;border:1px solid rgba(225,168,54,.5);background:rgba(225,168,54,.12);border-radius:999px;font-family:var(--f-head);font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px;backdrop-filter:blur(6px)}
-.hero-tag b{color:#fff;font-weight:800}
-.hero-tag i{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(225,168,54,.22);animation:livedot 1.8s ease-in-out infinite}
-@keyframes livedot{0%,100%{opacity:1}50%{opacity:.35}}
+/* ---- hero marketing / travel layer ---- */
 .hero-sub{display:block;font-family:var(--f-script);font-style:italic;font-weight:600;text-transform:none;letter-spacing:.01em;font-size:clamp(1.25rem,2.4vw,1.75rem);color:var(--gold-soft);margin-top:10px}
-.hero-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:26px;max-width:660px}
-.hero-metrics div{padding:13px 14px;border:1px solid rgba(255,255,255,.16);border-left:2px solid var(--gold);background:rgba(10,10,10,.42);backdrop-filter:blur(7px);border-radius:4px;transition:transform .3s var(--ease),border-color .3s,background .3s}
-.hero-metrics div:hover{transform:translateY(-4px);border-color:rgba(225,168,54,.55);background:rgba(10,10,10,.62)}
-.hero-metrics b{display:block;font-family:var(--f-head);font-weight:900;font-size:clamp(1.25rem,2.5vw,1.7rem);line-height:1;letter-spacing:-.03em;color:var(--gold)}
-.hero-metrics span{display:block;margin-top:6px;font-size:.7rem;line-height:1.35;color:rgba(255,255,255,.78)}
-.hero-note{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:18px;font-size:.78rem;color:rgba(255,255,255,.78)}
-.hero-note span{display:inline-flex;align-items:center;gap:7px}
-.hero-note svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2;flex:none}
-.hero-trust{margin-top:22px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--f-head);font-weight:600;color:rgba(255,255,255,.62)}
-@media(max-width:900px){.hero-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:420px){.hero-metrics b{font-size:1.2rem}.hero-metrics span{font-size:.66rem}}
+.hero-route{display:flex;align-items:center;gap:14px;margin-top:26px;max-width:560px;font-family:var(--f-head);font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.hero-route em{display:block;font-style:normal;font-weight:600;font-size:.62rem;letter-spacing:.14em;color:rgba(255,255,255,.6);margin-top:3px}
+.hr-line{position:relative;flex:1;height:16px;min-width:60px}
+.hr-line::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px dashed rgba(255,255,255,.4)}
+.hr-line svg{position:absolute;top:50%;left:0;width:17px;height:17px;margin-top:-8.5px;fill:var(--gold);stroke:none;animation:heroFly 5.5s var(--ease) infinite}
+@keyframes heroFly{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:calc(100% - 17px);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hr-line svg{animation:none;left:calc(50% - 8.5px)}}
+.hr-to{color:var(--gold-soft)}
+.hero-dests{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.hero-dests li{display:flex;align-items:baseline;gap:8px;padding:7px 13px;border:1px solid rgba(255,255,255,.2);background:rgba(10,10,10,.36);backdrop-filter:blur(6px);border-radius:999px;transition:border-color .3s,background .3s,transform .3s var(--ease)}
+.hero-dests li:hover{border-color:rgba(225,168,54,.6);background:rgba(10,10,10,.55);transform:translateY(-2px)}
+.hero-dests b{font-family:var(--f-head);font-weight:700;font-size:.82rem;color:#fff}
+.hero-dests em{font-style:normal;font-size:.7rem;color:var(--gold-soft);letter-spacing:.04em}
+.hero-dests .more{border:0;background:none;backdrop-filter:none;padding-left:2px;font-size:.78rem;color:rgba(255,255,255,.68)}
+.hero-dests .more:hover{transform:none;background:none}
+@media(max-width:560px){.hero-route{gap:10px;font-size:.7rem;letter-spacing:.12em}.hero-dests li{padding:6px 11px}.hero-dests .more{display:none}}
 /* ---- value strip under the hero ---- */
 .valstrip{background:var(--night);color:#fff;border-top:1px solid rgba(255,255,255,.08)}
 .valstrip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.11)}
@@ -963,27 +964,27 @@ form.sent .thanks{display:block}
   <div class="hero-bg"><img src="https://www.flycotravel.com/cdn/shop/files/FINNS-World-Best-Beach-Club-in-Canggu-Bali.jpg?v=1778752441&width=1600" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-in">
-      <span class="hero-tag hero-fade d1"><i></i> For Brand, Retail &amp; Marketing Teams</span>
       <h1><span class="ln"><i>Turn One Retreat Into</i></span><span class="ln"><i>11x Return</i></span>
         <span class="hero-sub hero-fade d1">and a content library that runs all quarter</span>
       </h1>
       <p class="hero-fade d1">You get the sales banked before the plane lands, months of fresh creative for paid and organic, and customers telling your story because they were actually there. We handle the travel — flights, hotels, ground logistics, headliner creators and a production crew on site.</p>
-      <div class="hero-metrics hero-fade d2">
-        <div><b>11x</b><span>Return on the last retreat campaign</span></div>
-        <div><b>5</b><span>Shoot backdrops from one 4-day trip</span></div>
-        <div><b>0</b><span>Logistics left on your team</span></div>
-        <div><b>48h</b><span>To get your costed campaign model</span></div>
+      <div class="hero-route hero-fade d2" aria-label="Departing Singapore for our retreat destinations">
+        <span class="hr-from">SIN <em>Singapore</em></span>
+        <span class="hr-line"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 19.5h19M21 10.4a1.7 1.7 0 0 0-2.1-1.2l-4.6 1.2-6-5.6-1.7.5 3.6 6.2-4.3 1.2-1.7-1.9-1.3.4 1.6 4.1 15.3-4.1A1.7 1.7 0 0 0 21 10.4z"/></svg></span>
+        <span class="hr-to">DPS &middot; SGN &middot; HND &middot; BNE &middot; CDG</span>
       </div>
+      <ul class="hero-dests hero-fade d2">
+        <li><b>Bali</b><em>2h 45m</em></li>
+        <li><b>Ho Chi Minh</b><em>2h 05m</em></li>
+        <li><b>Tokyo</b><em>7h 00m</em></li>
+        <li><b>Brisbane</b><em>7h 50m</em></li>
+        <li><b>Paris</b><em>13h 20m</em></li>
+        <li class="more">and anywhere else you want to fly them</li>
+      </ul>
       <div class="hero-btns hero-fade d3">
         <a class="btn btn-gold" href="#enquire"><span>Get My Campaign Model</span></a>
-        <a class="btn btn-out-light" href="#results"><span>See The 11x Case Study</span></a>
+        <a class="btn btn-out-light" href="https://www.flycotravel.com/collections/travel-retreats"><span>Explore Our Retreats</span></a>
       </div>
-      <div class="hero-note hero-fade d3">
-        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Costed proposal in 48 hours</span>
-        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>No retainer, no agency fees</span>
-        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Return tracked against retail sales</span>
-      </div>
-      <p class="hero-trust hero-fade d4">Trusted by Holistic Way &middot; Fuze Tea &middot; Airalo &middot; Changi Recommends &middot; Sony</p>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true"></div>
