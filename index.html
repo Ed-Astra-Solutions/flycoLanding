@@ -207,9 +207,9 @@ section{padding-block:var(--sec)}
 @keyframes kenburns{from{transform:scale(1.04) translate3d(0,0,0)}to{transform:scale(1.34) translate3d(-3.5%,-3%,0)}}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(92deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.66) 42%,rgba(0,0,0,.32) 100%)}
 .hero .wrap{position:relative;z-index:2;width:100%}
-.hero-in{max-width:660px;color:#fff}
+.hero-in{max-width:860px;color:#fff}
 .hero-in h1,.hero-in p{text-shadow:0 2px 10px rgba(0,0,0,.55)}
-.hero h1{color:#fff}
+.hero h1{color:#fff;font-size:clamp(1.85rem,4.2vw,2.85rem)}
 .hero h1 .ln{display:block;overflow:hidden}
 .hero h1 .ln i{display:block;font-style:normal;transform:translateY(105%);transition:transform 1s var(--ease)}
 .hero.ready h1 .ln i{transform:none}
@@ -217,7 +217,7 @@ section{padding-block:var(--sec)}
 .hero p{color:rgba(255,255,255,.9);font-size:clamp(1rem,1.5vw,1.14rem);margin-top:18px;max-width:54ch}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 /* ---- hero marketing / travel layer ---- */
-.hero-sub{display:block;font-family:var(--f-script);font-style:italic;font-weight:600;text-transform:none;letter-spacing:.01em;font-size:clamp(1.25rem,2.4vw,1.75rem);color:var(--gold-soft);margin-top:10px}
+.hero-sub{display:block;font-family:var(--f-script);font-style:italic;font-weight:600;text-transform:none;letter-spacing:.01em;font-size:clamp(1.1rem,1.9vw,1.35rem);color:var(--gold-soft);margin-top:10px}
 /* ---- value strip under the hero ---- */
 .valstrip{position:relative;z-index:2;margin-top:clamp(52px,9vh,120px);color:#fff;background:rgba(8,8,8,.72);backdrop-filter:blur(9px);border-top:1px solid rgba(255,255,255,.14)}
 .valstrip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14)}
@@ -931,8 +931,8 @@ form.sent .thanks{display:block}
   <div class="hero-bg"><img src="img/hero-preview.png" alt="" aria-hidden="true"></div>
   <div class="wrap hero-main">
     <div class="hero-in">
-      <h1><span class="ln"><i>Local Content Is Overdone.</i></span><span class="ln"><i>Next Evolution of Content</i></span><span class="ln"><i>Happens Beyond Singapore.</i></span>
-        <span class="hero-sub hero-fade d1">Spend &amp; Win Retreats That Pays for Your Influencers &amp; Content</span>
+      <h1><span class="ln"><i>Local Content Is Overdone.</i></span><span class="ln"><i>Next Evolution Beyond Singapore.</i></span>
+        <span class="hero-sub hero-fade d1">Spend &amp; Win Retreats That Pay for Content &amp; Influencers</span>
       </h1>
       <p class="hero-fade d1">A decade of content has fatigued audiences and flattened performance. We design custom retreats to any destination — wellness retreats that bring your products to life through curated activities, origins retreats that take creators and customers behind the scenes at your factory or HQ — turning your brand story into an experience worth sharing.</p>
       <div class="hero-btns hero-fade d2">
