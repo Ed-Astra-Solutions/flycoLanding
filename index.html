@@ -119,10 +119,6 @@ p{margin:0 0 1em}
 .reveal img{transform:scale(1.14);transition:transform 1.25s var(--ease)}
 .reveal.is-in img{transform:scale(1)}
 
-/* ================= ANNOUNCEMENT BAR ================= */
-.announce{background:var(--black);color:#fff;font-size:.79rem;text-align:center;padding:9px 16px;font-weight:600;overflow:hidden}
-.announce .slide{display:none;animation:annIn .55s var(--ease)}
-.announce .slide.on{display:block}
 @keyframes annIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* ================= HEADER ================= */
@@ -204,7 +200,7 @@ section{padding-block:var(--sec)}
 .night .hl{color:var(--gold)}
 
 /* ================= HERO ================= */
-.hero{position:relative;min-height:calc(100svh - 118px);display:flex;flex-direction:column;padding-block:clamp(40px,6vw,72px) 0;background:#101010;overflow:hidden}
+.hero{position:relative;min-height:calc(100svh - 74px);display:flex;flex-direction:column;padding-block:clamp(40px,6vw,72px) 0;background:#101010;overflow:hidden}
 .hero-main{flex:1;display:flex;align-items:center}
 .hero-bg{position:absolute;inset:0;overflow:hidden}
 .hero-bg img{width:100%;height:100%;object-fit:cover;animation:kenburns 18s ease-in-out infinite alternate}
@@ -764,7 +760,6 @@ form.sent .thanks{display:block}
   --gold-dark:#e8b84a;--gold-soft:#4b3c1c;
 }
 [data-theme="dark"] body{background:var(--paper);color:var(--ink)}
-[data-theme="dark"] .announce{background:#000}
 
 /* header + nav */
 [data-theme="dark"] .site-header{background:rgba(11,11,11,.94);backdrop-filter:blur(12px)}
@@ -897,14 +892,6 @@ form.sent .thanks{display:block}
 </head>
 <body>
 
-<!-- ===== ANNOUNCEMENT BAR (from flycotravel.com) ===== -->
-<div class="announce" id="announce">
-  <div class="slide on">📈 <strong>11X RETURN ON THE HOLISTIC WAY RETREAT CAMPAIGN</strong></div>
-  <div class="slide">🎬 <strong>ONE 4-DAY TRIP = A CONTENT LIBRARY FOR THE QUARTER</strong></div>
-  <div class="slide">✈️ <strong>FLIGHTS, HOTELS, CREATORS AND CREW HANDLED BY US</strong></div>
-  <div class="slide">🗓️ <strong>Q4 RETREAT SLOTS ARE FILLING, ENQUIRE THIS WEEK</strong></div>
-</div>
-
 <!-- ===== HEADER (from flycotravel.com) ===== -->
 <header class="site-header" id="hdr">
   <div class="wrap hdr">
@@ -941,16 +928,16 @@ form.sent .thanks{display:block}
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
-  <div class="hero-bg"><img src="https://www.flycotravel.com/cdn/shop/files/FINNS-World-Best-Beach-Club-in-Canggu-Bali.jpg?v=1778752441&width=1600" alt="" aria-hidden="true"></div>
+  <div class="hero-bg"><img src="img/hero-preview.png" alt="" aria-hidden="true"></div>
   <div class="wrap hero-main">
     <div class="hero-in">
-      <h1><span class="ln"><i>Corporate Retreats</i></span><span class="ln"><i>That Pay You Back</i></span>
-        <span class="hero-sub hero-fade d1">revenue, content and advocates from one trip</span>
+      <h1><span class="ln"><i>Local Content Is Overdone.</i></span><span class="ln"><i>Next Evolution of Content</i></span><span class="ln"><i>Happens Beyond Singapore.</i></span>
+        <span class="hero-sub hero-fade d1">Spend &amp; Win Retreats That Pays for Your Influencers &amp; Content</span>
       </h1>
-      <p class="hero-fade d1">Fly your customers, creators or team somewhere worth posting about. The revenue is earned before takeoff, the content is shot while you are there, and the advocacy runs for months after. We report it like media: retail lift, cost per asset and earned reach, all measured against what the retreat cost.</p>
+      <p class="hero-fade d1">A decade of content has fatigued audiences, and performance is dropping. Customers are tired of watching influencers unbox the same product over and over again. We design custom retreats to any destination of your choice, from wellness retreats that bring your products to life across curated activities, to origins retreats that take creators and customers behind the scenes at your factory or HQ. Every journey is designed to turn your brand story into an experience worth sharing.</p>
       <div class="hero-btns hero-fade d2">
-        <a class="btn btn-gold" href="#enquire"><span>Get My Campaign Model</span></a>
-        <a class="btn btn-out-light" href="https://www.flycotravel.com/collections/travel-retreats"><span>Explore Our Retreats</span></a>
+        <a class="btn btn-gold" href="#enquire"><span>Design My Brand Retreat</span></a>
+        <a class="btn btn-out-light" href="https://www.flycotravel.com/collections/travel-retreats"><span>Explore What Other Brands Did</span></a>
       </div>
     </div>
   </div>
@@ -1706,12 +1693,6 @@ document.getElementById("yr").textContent = new Date().getFullYear();
 
 /* ---- hero intro ---- */
 requestAnimationFrame(function(){ document.getElementById("hero").classList.add("ready"); });
-
-/* ---- announcement rotator ---- */
-var slides = document.querySelectorAll("#announce .slide"), ai = 0;
-if (slides.length > 1 && !reduce) setInterval(function(){
-  slides[ai].classList.remove("on"); ai = (ai+1) % slides.length; slides[ai].classList.add("on");
-}, 4200);
 
 /* ---- sticky header ---- */
 var hdr = document.getElementById("hdr"), sticky = document.getElementById("sticky"), last = 0;
